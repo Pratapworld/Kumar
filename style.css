@@ -1,0 +1,133 @@
+/* ===== Grid Engineer's Notebook — shared styles ===== */
+:root {
+  --bg: #0f1720;
+  --bg-soft: #16212e;
+  --card: #1b2735;
+  --text: #e6edf3;
+  --muted: #9fb0c0;
+  --accent: #f5a623;      /* electric amber */
+  --accent-2: #2dd4bf;    /* teal */
+  --border: #26384a;
+  --max: 980px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- Header / nav ---- */
+header.site {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+}
+.brand {
+  font-weight: 700;
+  color: var(--text);
+  margin-right: auto;
+  font-size: 1.05rem;
+}
+.brand span { color: var(--accent); }
+nav a {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+nav a:hover, nav a.active { color: var(--text); text-decoration: none; }
+
+/* ---- Layout ---- */
+main { max-width: var(--max); margin: 0 auto; padding: 1.8rem 1rem 3rem; }
+.hero { padding: 2.4rem 0 1.2rem; }
+.hero h1 { font-size: 2rem; margin: 0 0 0.4rem; }
+.hero p.lead { color: var(--muted); font-size: 1.1rem; margin: 0.3rem 0 1.2rem; }
+.tag { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.8rem; }
+
+h2 { margin-top: 2rem; border-left: 3px solid var(--accent); padding-left: 0.6rem; }
+
+/* ---- Cards grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  display: block;
+  color: var(--text);
+  transition: border-color .15s, transform .15s;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #1a1206;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.btn:hover { text-decoration: none; opacity: 0.92; }
+.btn.outline { background: transparent; color: var(--accent-2); border: 1px solid var(--accent-2); }
+
+/* ---- Calculator ---- */
+.calc { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem; max-width: 480px; }
+.calc label { display: block; margin: 0.8rem 0 0.25rem; font-size: 0.9rem; color: var(--muted); }
+.calc input, .calc select {
+  width: 100%; padding: 0.55rem; border-radius: 7px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1rem;
+}
+.result { margin-top: 1.2rem; padding: 1rem; background: var(--bg); border-radius: 8px; border: 1px dashed var(--accent); font-size: 1.05rem; }
+.result strong { color: var(--accent); }
+
+/* ---- Updates feed ---- */
+.update {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.1rem; margin-bottom: 1rem;
+}
+.update .date { color: var(--accent); font-size: 0.82rem; font-weight: 600; }
+.update h3 { margin: 0.2rem 0 0.5rem; }
+.update img { max-width: 100%; border-radius: 8px; margin-top: 0.6rem; }
+.badge { display:inline-block; font-size:0.72rem; padding:0.15rem 0.5rem; border-radius:20px; background:var(--bg-soft); color:var(--accent-2); border:1px solid var(--border); margin-left:0.4rem;}
+
+/* ---- Footer ---- */
+footer.site {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 1.6rem 1rem;
+}
+footer.site a { margin: 0 0.4rem; }
+
+.muted { color: var(--muted); }
+ul.clean { padding-left: 1.1rem; }
+ul.clean li { margin: 0.3rem 0; }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Updates — Pratap Kumar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html">Grid Engineer's <span>Notebook</span></a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../notes/index.html">Protection Notes</a>
+        <a href="../calculators/index.html">Calculators</a>
+        <a href="../bihar-tracker/index.html">Bihar Tracker</a>
+        <a href="index.html" class="active">My Updates</a>
+        <a href="../ai-for-engineers/index.html">AI for Engineers</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>My Updates</h1>
+    <p class="lead muted">Trips, ongoing project status, and learning progress.</p>
+    <p>
+      <a class="btn" href="https://www.linkedin.com/in/pratap-kumar-684b3a3b4/" target="_blank" rel="noopener">Follow me on LinkedIn</a>
+    </p>
+
+    <div id="feed" style="margin-top:1.4rem;">
+      <p class="muted">Loading updates…</p>
+    </div>
+
+    <p class="muted" style="margin-top:2rem;font-size:0.85rem;">
+      To post a new update: open <code>updates/updates.json</code>, add a new block at the top
+      (date, type, title, text, image), and commit. Put any photo in <code>assets/images/</code>
+      and set <code>"image": "../assets/images/yourphoto.jpg"</code>.
+    </p>
+  </main>
+
+  <footer class="site">
+    <div>
+      © <span id="year"></span> Pratap Kumar ·
+      <a href="https://www.linkedin.com/in/pratap-kumar-684b3a3b4/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    // Load updates from updates.json and render newest-first.
+    fetch("updates.json")
+      .then(function (r) { return r.json(); })
+      .then(function (items) {
+        items.sort(function (a, b) { return b.date.localeCompare(a.date); });
+        var feed = document.getElementById("feed");
+        feed.innerHTML = "";
+        items.forEach(function (u) {
+          var el = document.createElement("article");
+          el.className = "update";
+          var img = u.image ? '<img src="' + u.image + '" alt="">' : "";
+          var badge = u.type ? '<span class="badge">' + u.type + "</span>" : "";
+          el.innerHTML =
+            '<div class="date">' + u.date + "</div>" +
+            "<h3>" + u.title + badge + "</h3>" +
+            "<p>" + u.text + "</p>" + img;
+          feed.appendChild(el);
+        });
+      })
+      .catch(function () {
+        document.getElementById("feed").innerHTML =
+          '<p class="muted">Updates will appear here once the site is published.</p>';
+      });
+  </script>
+</body>
+</html>

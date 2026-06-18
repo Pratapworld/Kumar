@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CT Ratio Calculator — Grid Engineer's Notebook</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html">Grid Engineer's <span>Notebook</span></a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../notes/index.html">Protection Notes</a>
+        <a href="index.html" class="active">Calculators</a>
+        <a href="../bihar-tracker/index.html">Bihar Tracker</a>
+        <a href="../updates/index.html">My Updates</a>
+        <a href="../ai-for-engineers/index.html">AI for Engineers</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <p><a href="index.html">← All calculators</a></p>
+    <h1>CT Ratio Calculator</h1>
+    <p class="lead muted">Enter the CT primary and secondary ratings, plus the actual primary current, to get the CT ratio and the resulting secondary current.</p>
+
+    <div class="calc">
+      <label for="prim">CT primary rating (A)</label>
+      <input type="number" id="prim" value="1000" min="0" step="any">
+
+      <label for="sec">CT secondary rating (A)</label>
+      <select id="sec">
+        <option value="1">1 A</option>
+        <option value="5" selected>5 A</option>
+      </select>
+
+      <label for="iprim">Actual primary current (A)</label>
+      <input type="number" id="iprim" value="800" min="0" step="any">
+
+      <button class="btn" id="calcBtn" style="margin-top:1rem;">Calculate</button>
+
+      <div class="result" id="result" style="display:none;"></div>
+    </div>
+
+    <p class="muted" style="margin-top:1.5rem;font-size:0.9rem;">
+      CT ratio = primary rating / secondary rating. Secondary current = actual primary current × (secondary rating / primary rating).
+    </p>
+  </main>
+
+  <footer class="site">
+    <div>© <span id="year"></span> Pratap Kumar ·
+      <a href="https://www.linkedin.com/in/pratap-kumar-684b3a3b4/" target="_blank" rel="noopener">LinkedIn</a></div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    function calcCT() {
+      var prim = parseFloat(document.getElementById("prim").value);
+      var sec = parseFloat(document.getElementById("sec").value);
+      var iprim = parseFloat(document.getElementById("iprim").value);
+      var out = document.getElementById("result");
+
+      if (!(prim > 0) || !(sec > 0) || isNaN(iprim)) {
+        out.style.display = "block";
+        out.innerHTML = "Please enter valid positive numbers.";
+        return;
+      }
+
+      var ratio = prim / sec;                 // e.g. 1000/5 = 200
+      var isec = iprim * (sec / prim);        // secondary current
+
+      out.style.display = "block";
+      out.innerHTML =
+        "CT ratio: <strong>" + prim + " / " + sec + "</strong> (= " + ratio.toFixed(1) + ":1)<br>" +
+        "Secondary current: <strong>" + isec.toFixed(3) + " A</strong>";
+    }
+    document.getElementById("calcBtn").addEventListener("click", calcCT);
+    calcCT(); // show a result on load
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-06-18",
+    "type": "Learning",
+    "title": "Started building my own website",
+    "text": "Set up the Grid Engineer's Notebook — protection notes, calculators and this updates feed. Combining my POWERGRID work with my Computer Science learning.",
+    "image": ""
+  },
+  {
+    "date": "2026-06-10",
+    "type": "Project",
+    "title": "STATCOM testing — in progress",
+    "text": "Working on protection and testing activities for the STATCOM bay. Status: testing stage.",
+    "image": ""
+  },
+  {
+    "date": "2026-06-01",
+    "type": "Trip",
+    "title": "Site visit",
+    "text": "Add a short note about your trip here, and drop a photo in assets/images/ then put its path in the image field.",
+    "image": ""
+  }
+]
